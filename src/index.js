@@ -46,7 +46,16 @@ getToken(messaging, { vapidKey: YOUR_PUBLIC_VAPID_KEY_HERE }).then((currentToken
 
 onMessage(messaging, (payload) => {
     console.log('Message received. ', payload);
-    // ...
+
+    const notificationTitle = payload.notification.title;
+    const notificationOptions = {
+        body: payload.notification.body,
+        icon: 'https://www.babycentre.co.uk/ims/2013/10/159450328_wide.jpg'
+    };
+
+    new Notification(notificationTitle,
+        notificationOptions)
+
 });
 
 export {
