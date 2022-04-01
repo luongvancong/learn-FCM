@@ -18,15 +18,15 @@ const messaging = getMessaging(firebaseApp);
 onBackgroundMessage(messaging, (payload) => {
     console.log('[firebase-messaging-sw.js] Received background message ', payload);
     // Customize notification here
-    const notificationTitle = payload.notification.title;
+    const notificationTitle = payload.notification.title + "FUCK";
     const notificationOptions = {
-        body: payload.notification.body,
+        body: payload.notification.body + 'FUCK',
         icon: 'https://www.babycentre.co.uk/ims/2013/10/159450328_wide.jpg'
     };
 
+    // Nếu người dùng tắt nhận notification từ chrome thì service worker sẽ push notice
+    // vào foreground và được listen qua onMessage
+    // Nếu người dùng bật nhận notification từ chrome thì hàm này mặc định chạy, hàm onMessage ở foreground cũng chạy
     self.registration.showNotification(notificationTitle,
         notificationOptions)
-        .then(rs => {
-            console.log('rs', rs)
-        })
 });
